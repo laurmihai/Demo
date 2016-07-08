@@ -166,8 +166,4 @@
         android:background="@android:color/transparent"
         android:contextClickable="true"
         android:textAllCaps="false"/>
-
-
-
-
 </RelativeLayout>

@@ -1,10 +1,8 @@
 package com.example.laurentiu.demoproject;
 
-
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -22,30 +20,47 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_login);
 
-        password1 = (EditText) findViewById(R.id.sendPassword1);
-        password2 = (EditText) findViewById(R.id.sendPassword2);
-
-        next = (Button) findViewById(R.id.next_button);
+      getReferences();
 
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if ((String.valueOf(password1.getText())).equals(String.valueOf(password2.getText()))
-                        && (String.valueOf(password1.getText()).length() !=0) ){
-                    Toast.makeText(getApplicationContext(), "Sunt egale", Toast.LENGTH_LONG).show();
-                }
-                else{
-                    Toast.makeText(getApplicationContext(), "Nu unt egale", Toast.LENGTH_LONG).show();
+
+                if(validateFields())
+                {
+                    // TODO: go to next screen
                 }
             }
         });
 
+    }
 
+    private  void getReferences()
+    {
+        password1 = (EditText) findViewById(R.id.sendPassword1);
+        password2 = (EditText) findViewById(R.id.sendPassword2);
 
+        next = (Button) findViewById(R.id.next_button);
+    }
+
+    private boolean validateFields()
+    {
+        if (password1.getText().toString().length() < 8)
+        {
+            Toast.makeText(getApplicationContext(), getResources()
+                    .getString(R.string.error_invalid_password), Toast.LENGTH_LONG).show();
+            return false;
+        }
+
+        if ((String.valueOf(password1.getText())).equals(String.valueOf(password2.getText())))
+        {
+            Toast.makeText(getApplicationContext(), "Passwords does not match", Toast.LENGTH_LONG).show();
+            return false;
+        }
+
+        return true;
     }
 }
 
