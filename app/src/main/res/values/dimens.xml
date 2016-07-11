@@ -3,4 +3,7 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="input_fields_margins">20dp</dimen>
+    <dimen name="margins_sides">5dp</dimen>
+    <dimen name="enter_box">70dp</dimen>
+
 </resources>

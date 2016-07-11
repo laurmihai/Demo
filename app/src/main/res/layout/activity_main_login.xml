@@ -141,6 +141,8 @@
             android:id="@+id/send_button"
             android:text="@string/send_button_text"
             android:textColor="#ffffffff"
+            android:paddingRight="10dp"
+            android:drawableRight="@drawable/right_arrow2"
             android:background="@drawable/layout_send_code" />
 
 

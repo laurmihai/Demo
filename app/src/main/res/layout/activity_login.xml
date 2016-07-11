@@ -24,7 +24,7 @@
         android:layout_centerHorizontal="true"
         android:text="@string/login_message_up"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="#ffffff" />
+        android:textColor="@color/white" />
 
     <TextView
         android:id="@+id/sign_message_down"
@@ -34,7 +34,7 @@
         android:layout_centerHorizontal="true"
         android:text="@string/login_message_down"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:textColor="#ffffff" />
+        android:textColor="@color/white" />
 
     <RelativeLayout
         android:id="@+id/relativeLayoutPassword"
@@ -52,7 +52,7 @@
             android:layout_width="30dp"
             android:layout_height="1dp"
             android:layout_toStartOf="@+id/sign_text_enter"
-            android:background="#ffffffff" />
+            android:background="@color/white" />
 
         <TextView
             android:id="@+id/sign_text_enter"
@@ -64,7 +64,7 @@
             android:layout_centerHorizontal="true"
             android:text="@string/login_text_password"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="#ffffff"
+            android:textColor="@color/white"
             android:textSize="15dp" />
 
         <View
@@ -73,7 +73,7 @@
             android:layout_width="30dp"
             android:layout_height="1dp"
             android:layout_toEndOf="@+id/sign_text_enter"
-            android:background="#ffffffff" />
+            android:background="@color/white" />
     </RelativeLayout>
 
     <RelativeLayout
@@ -81,8 +81,8 @@
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:layout_below="@+id/relativeLayoutPassword"
-        android:paddingLeft="@dimen/activity_vertical_margin"
-        android:paddingRight="@dimen/activity_vertical_margin">
+        android:paddingLeft="@dimen/input_fields_margins"
+        android:paddingRight="@dimen/input_fields_margins">
 
         <View
             android:layout_width="match_parent"
@@ -171,10 +171,10 @@
             android:layout_height="match_parent"
             android:id="@+id/next_button"
             android:text="@string/login_button_text"
-            android:textColor="#ffffffff"
-            android:background="@drawable/layout_send_code" />
-
-
+            android:textColor="@color/white"
+            android:background="@drawable/layout_send_code"
+            android:paddingRight="5dp"
+            android:drawableRight="@drawable/right_arrow2"/>
     </RelativeLayout>
 
 </RelativeLayout>

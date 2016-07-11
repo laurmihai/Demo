@@ -1,9 +1,12 @@
 package com.example.laurentiu.demoproject.data;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
+import android.widget.Toast;
 
 import com.example.laurentiu.demoproject.data.DatabaseContract.PhoneEntry;
 
@@ -16,17 +19,21 @@ public final class PhoneDatabase extends SQLiteOpenHelper {
 
     static final String DATABASE_NAME = "demo.db";
 
-    private static volatile PhoneDatabase instance;
-
-    public static synchronized PhoneDatabase getInstance(Context context) {
-        if (instance == null) {
-            instance = new PhoneDatabase(context.getApplicationContext());
-        }
-        return instance;
-    }
+    private static final String SQL_DELETE_ENTRIES =
+            "DROP TABLE IF EXISTS " + PhoneEntry.TABLE_NAME;
 
     public PhoneDatabase(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
+    }
+
+    private static PhoneDatabase instance;
+
+    public static synchronized PhoneDatabase getInstance(Context context)
+    {
+        if (instance == null)
+            instance = new PhoneDatabase(context);
+
+        return instance;
     }
 
     @Override
@@ -37,23 +44,50 @@ public final class PhoneDatabase extends SQLiteOpenHelper {
                 // forecasting, it's reasonable to assume the user will want information
                 // for a certain date and all dates *following*, so the forecast data
                 // should be sorted accordingly.
-                PhoneEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
 
                 // the ID of the location entry associated with this weather data
                 PhoneEntry.COLUMN_PHONE_NUMBER + " TEXT NOT NULL, " +
-                PhoneEntry.COLUMN_PASSWORD + " TEXT NOT NULL); ";
+                PhoneEntry.COLUMN_PASSWORD + " TEXT NOT NULL, " +
+                PhoneEntry.COLUMN_FIRST_NAME + " TEXT NOT NULL, " +
+                PhoneEntry.COLUMN_LAST_NAME + " TEXT NOT NULL, " +
+                PhoneEntry.COLUMN_EMAIL + " TEXT NOT NULL);";
+                Log.i("Queryul de creeare", SQL_CREATE_PHONE_TABLE);
 
         sqLiteDatabase.execSQL(SQL_CREATE_PHONE_TABLE);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-
+        sqLiteDatabase.execSQL(SQL_DELETE_ENTRIES);
+        onCreate(sqLiteDatabase);
     }
 
     public Cursor getData(String phoneNumber, Context context){
-        SQLiteDatabase db = PhoneDatabase.getInstance(context).getReadableDatabase();
-        Cursor res =  db.rawQuery( "select * from phoneNumbers where phone_number="+phoneNumber+";", null );
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor res =  db.rawQuery( "select * from phoneNumbers;", null );
+        /*Cursor res = db.query(
+                PhoneEntry.TABLE_NAME,  // The table to query
+                new String[] {PhoneEntry.COLUMN_PASSWORD},                               // The columns to return
+                PhoneEntry.COLUMN_PHONE_NUMBER,                                // The columns for the WHERE clause
+                "select * from phoneNumbers where phone_number=",                            // The values for the WHERE clause
+                null,                                     // don't group the rows
+                null,                                     // don't filter by row groups
+                null// The sort order
+        );*/
+        Toast.makeText(context, phoneNumber, Toast.LENGTH_LONG).show();
         return res;
     }
+
+    public void addEntry(Context context, String phone, String password, String first_name, String last_name, String email){
+        ContentValues values = new ContentValues();
+        values.put(PhoneEntry.COLUMN_PHONE_NUMBER, phone);
+        values.put(PhoneEntry.COLUMN_PASSWORD, password);
+        values.put(PhoneEntry.COLUMN_FIRST_NAME, first_name);
+        values.put(PhoneEntry.COLUMN_LAST_NAME, last_name);
+        values.put(PhoneEntry.COLUMN_EMAIL, email);
+        getWritableDatabase().insert(
+                PhoneEntry.TABLE_NAME,
+                null,
+                values);
+    };
 }

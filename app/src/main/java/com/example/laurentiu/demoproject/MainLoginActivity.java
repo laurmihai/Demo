@@ -24,7 +24,9 @@ public class MainLoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_login);
-        db = new PhoneDatabase(this);
+
+
+        db =PhoneDatabase.getInstance(this);
 
         sendButton = (Button) findViewById(R.id.send_button);
 
@@ -44,17 +46,19 @@ public class MainLoginActivity extends AppCompatActivity {
                 }
                 else{
                     Cursor cursorNumber = db.getData(String.valueOf(sendText.getText()), getApplicationContext()) ;
+
                     if( cursorNumber.getCount() < 1 ){
                         //Go to screen 3
                         Log.i("Cursor", "Number not in Database");
-                        startActivity(new Intent(getApplicationContext(), LoginActivity.class ));
+                        Intent register = new Intent(getApplicationContext(), RegisterActivity.class);
+                        register.putExtra("phone_number", String.valueOf(sendText.getText()));
+                        startActivity(register);
                     }
                     else{
-                        cursorNumber.moveToFirst();
-                        String phoneNumber = cursorNumber.getString( cursorNumber.getColumnIndex("COLUMN_PHONE_NUMBER"));
-                        Log.i("Cursor", "Password is "+phoneNumber);
-                        //Go so screen 2
-                        startActivity(new Intent(getApplicationContext(), LoginActivity.class ));
+                        Log.i("Cursor", "Number in database");
+                        Intent confirmPassword = new Intent(getApplicationContext(), LoginActivity.class);
+                        confirmPassword.putExtra("phone_number", String.valueOf(sendText.getText()));
+                        startActivity(confirmPassword);
                     }
 
                 }
@@ -68,6 +72,7 @@ public class MainLoginActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Log.i("Click", "skip");
                 //Go to screen 4
+                //startActivity(new Intent(getApplicationContext(), MainPageACtivity.class));
             }
         });
 
