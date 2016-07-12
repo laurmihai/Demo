@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:background="@drawable/background_login"
+    tools:context=".HomescreenActivity"
+    android:clickable="false">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/enter_box"
+        android:id="@+id/top_bar">
+        <ImageView
+            android:id="@+id/appbar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/enter_box"
+            android:background="@color/redColor">
+        </ImageView>
+        <Button
+            android:id="@+id/searchImage"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_alignEnd="@+id/appbar"
+            android:layout_centerVertical="true"
+            android:background="@color/transparent"
+            android:drawableStart="@drawable/search_icon"
+            android:paddingRight="@dimen/margins_sides"/>
+        <TextView
+            android:id="@+id/offer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/title_activity_homescreen"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:layout_centerInParent="true"/>
+        <EditText
+            android:id="@+id/searchText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/searchImage"
+            android:layout_centerVertical="true"
+            android:visibility="gone"
+            android:background="@color/transparent"
+            android:paddingLeft="@dimen/enter_box"/>
+    </RelativeLayout>
+
+    <ScrollView
+        android:id="@+id/scrollHomescreen"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/enter_box"
+        android:layout_below="@id/top_bar"
+        android:background="@color/white"
+        android:scrollbarAlwaysDrawHorizontalTrack="true">
+    </ScrollView>
+
+</RelativeLayout>

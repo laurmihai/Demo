@@ -20,8 +20,5 @@ public class DatabaseContract {
 
         public static final String COLUMN_EMAIL = "email";
 
-
-
-
     }
 }

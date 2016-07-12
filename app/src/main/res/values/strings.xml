@@ -28,13 +28,9 @@
     <string name="or_text">or</string>
     <string name="fill_text">Fill it by yourself</string>
     <string name="register_text">Register</string>
+    <string name="facebook_app_id">1148277408577788</string>
 
-    <string name="action_sign_in">Sign in or register</string>
-    <string name="action_sign_in_short">Sign in</string>
-
-    <string name="permission_rationale">"Contacts permissions are needed for providing email
-        completions."
-    </string>
-
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="title_activity_homescreen">OFFERS</string>
 
 </resources>

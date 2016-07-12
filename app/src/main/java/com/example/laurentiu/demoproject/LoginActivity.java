@@ -21,7 +21,6 @@ public class LoginActivity extends AppCompatActivity {
     EditText password2;
     Button next;
     String phone_number;
-    String password;
 
 
     @Override
@@ -56,11 +55,12 @@ public class LoginActivity extends AppCompatActivity {
 
     protected boolean validateFields(String phone_number)
     {
-        Cursor cursorNumber = PhoneDatabase.getInstance(getApplicationContext()).getData(phone_number, getApplicationContext());
-        password = cursorNumber.getString( cursorNumber.getColumnIndex(DatabaseContract.PhoneEntry.COLUMN_PASSWORD));
+        Cursor cursorNumber = PhoneDatabase.getInstance(getApplicationContext()).getData(phone_number);
+        cursorNumber.moveToFirst();
+        String password = cursorNumber.getString( cursorNumber.getColumnIndex(DatabaseContract.PhoneEntry.COLUMN_PASSWORD));
 
         if(!password.equals(password1.getText().toString())){
-            Toast.makeText(getApplicationContext(), "Wrong password", Toast.LENGTH_LONG);
+            Toast.makeText(getApplicationContext(), "Wrong password", Toast.LENGTH_LONG).show();
             return false;
         }
 
@@ -73,7 +73,12 @@ public class LoginActivity extends AppCompatActivity {
 
         if (!(String.valueOf(password1.getText())).equals(String.valueOf(password2.getText())))
         {
-            Toast.makeText(getApplicationContext(), "Passwords does not match", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "Passwords does not match", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        if (!password.equals(String.valueOf(password2.getText())))
+        {
+            Toast.makeText(getApplicationContext(), "Wrong password", Toast.LENGTH_LONG).show();
             return false;
         }
         return true;

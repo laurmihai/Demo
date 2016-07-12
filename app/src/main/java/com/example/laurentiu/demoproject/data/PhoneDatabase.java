@@ -6,7 +6,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.example.laurentiu.demoproject.data.DatabaseContract.PhoneEntry;
 
@@ -62,19 +61,9 @@ public final class PhoneDatabase extends SQLiteOpenHelper {
         onCreate(sqLiteDatabase);
     }
 
-    public Cursor getData(String phoneNumber, Context context){
+    public Cursor getData(String phoneNumber){
         SQLiteDatabase db = getReadableDatabase();
-        Cursor res =  db.rawQuery( "select * from phoneNumbers;", null );
-        /*Cursor res = db.query(
-                PhoneEntry.TABLE_NAME,  // The table to query
-                new String[] {PhoneEntry.COLUMN_PASSWORD},                               // The columns to return
-                PhoneEntry.COLUMN_PHONE_NUMBER,                                // The columns for the WHERE clause
-                "select * from phoneNumbers where phone_number=",                            // The values for the WHERE clause
-                null,                                     // don't group the rows
-                null,                                     // don't filter by row groups
-                null// The sort order
-        );*/
-        Toast.makeText(context, phoneNumber, Toast.LENGTH_LONG).show();
+        Cursor res =  db.rawQuery( "select * from phoneNumbers where phone_number = " + phoneNumber + ";", null );
         return res;
     }
 

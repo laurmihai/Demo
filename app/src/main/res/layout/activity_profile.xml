@@ -366,5 +366,12 @@
                 android:paddingRight="@dimen/margins_sides" />
         </RelativeLayout>
 
+        <com.facebook.login.widget.LoginButton
+            android:id="@+id/fbLogin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:layout_below="@+id/layout_register"/>
     </RelativeLayout>
+
 </ScrollView>

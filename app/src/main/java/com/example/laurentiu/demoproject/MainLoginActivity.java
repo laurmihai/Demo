@@ -45,7 +45,7 @@ public class MainLoginActivity extends AppCompatActivity {
                     Toast.makeText(context, text, duration).show();
                 }
                 else{
-                    Cursor cursorNumber = db.getData(String.valueOf(sendText.getText()), getApplicationContext()) ;
+                    Cursor cursorNumber = db.getData(String.valueOf(sendText.getText())) ;
 
                     if( cursorNumber.getCount() < 1 ){
                         //Go to screen 3
@@ -72,7 +72,7 @@ public class MainLoginActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Log.i("Click", "skip");
                 //Go to screen 4
-                //startActivity(new Intent(getApplicationContext(), MainPageACtivity.class));
+                startActivity(new Intent(getApplicationContext(), HomescreenActivity.class));
             }
         });
 
