@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Salam!</string>
+    <string name="app_name">App!</string>
     <string name="sign_message_up">Sign in or sign up</string>
     <string name="sign_message_down">With your phone no</string>
     <string name="sign_message_enter">Enter your phone number</string>
@@ -32,5 +32,8 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="title_activity_homescreen">OFFERS</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

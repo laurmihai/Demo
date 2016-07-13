@@ -4,21 +4,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
     android:background="@drawable/background_login"
-    tools:context=".HomescreenActivity"
-    android:clickable="false">
+    android:clickable="false"
+    android:fitsSystemWindows="true"
+    tools:context=".HomescreenActivity">
 
     <RelativeLayout
+        android:id="@+id/top_bar"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/enter_box"
-        android:id="@+id/top_bar">
+        android:layout_height="@dimen/enter_box">
+
         <ImageView
             android:id="@+id/appbar"
             android:layout_width="match_parent"
             android:layout_height="@dimen/enter_box"
-            android:background="@color/redColor">
-        </ImageView>
+            android:background="@color/redColor" />
+
         <Button
             android:id="@+id/searchImage"
             android:layout_width="32dp"
@@ -27,34 +28,163 @@
             android:layout_centerVertical="true"
             android:background="@color/transparent"
             android:drawableStart="@drawable/search_icon"
-            android:paddingRight="@dimen/margins_sides"/>
+            android:paddingRight="@dimen/margins_sides" />
+
         <TextView
             android:id="@+id/offer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
             android:text="@string/title_activity_homescreen"
-            android:textSize="22sp"
-            android:textStyle="bold"
             android:textColor="@color/white"
-            android:layout_centerInParent="true"/>
+            android:textSize="22sp"
+            android:textStyle="bold" />
+
         <EditText
             android:id="@+id/searchText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_toLeftOf="@+id/searchImage"
             android:layout_centerVertical="true"
-            android:visibility="gone"
+            android:layout_toLeftOf="@+id/searchImage"
             android:background="@color/transparent"
-            android:paddingLeft="@dimen/enter_box"/>
+            android:paddingLeft="@dimen/enter_box"
+            android:visibility="gone" />
     </RelativeLayout>
 
-    <ScrollView
+    <HorizontalScrollView
         android:id="@+id/scrollHomescreen"
         android:layout_width="match_parent"
         android:layout_height="@dimen/enter_box"
         android:layout_below="@id/top_bar"
+        android:layout_weight="0"
         android:background="@color/white"
-        android:scrollbarAlwaysDrawHorizontalTrack="true">
-    </ScrollView>
+        android:measureAllChildren="false"
+        android:scrollbars="horizontal">
 
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:padding="@dimen/input_fields_margins"
+                android:text="ALL"
+                android:textColor="@color/greyColor"
+                android:textSize="@dimen/hor_scrollview_text" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:padding="@dimen/input_fields_margins"
+                android:text="COUPONS"
+                android:textColor="@color/greyColor"
+                android:textSize="@dimen/hor_scrollview_text" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:padding="@dimen/input_fields_margins"
+                android:text="LAST MINUTE"
+                android:textColor="@color/greyColor"
+                android:textSize="@dimen/hor_scrollview_text" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:padding="@dimen/input_fields_margins"
+                android:text="NEW"
+                android:textColor="@color/greyColor"
+                android:textSize="@dimen/hor_scrollview_text" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:padding="@dimen/input_fields_margins"
+                android:text="SALES"
+                android:textColor="@color/greyColor"
+                android:textSize="@dimen/hor_scrollview_text" />
+
+        </LinearLayout>
+    </HorizontalScrollView>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/scrollHomescreen"
+        android:layout_above="@+id/bottomBar"
+        android:stretchMode="columnWidth"
+        >
+
+    </android.support.v7.widget.RecyclerView>
+
+
+    <LinearLayout
+        android:id="@+id/bottomBar"
+        android:layout_width="match_parent"
+        android:layout_height="94dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/lightBlack"
+        android:orientation="horizontal"
+        android:weightSum="4">
+
+        <ImageButton
+            android:id="@+id/bottom1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:background="@color/lightBlack"
+            android:focusable="true"
+            android:src="@drawable/selector_bottom1">
+
+        </ImageButton>
+
+        <ImageButton
+            android:id="@+id/bottom2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:background="@color/lightBlack"
+            android:focusable="true"
+            android:src="@drawable/selector_bottom2">
+
+        </ImageButton>
+
+        <ImageButton
+            android:id="@+id/bottom3"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:background="@color/lightBlack"
+            android:focusable="true"
+            android:src="@drawable/selector_bottom3">
+
+        </ImageButton>
+
+        <ImageButton
+            android:id="@+id/bottom4"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:background="@color/lightBlack"
+            android:focusable="true"
+            android:src="@drawable/bottom_button4" />
+    </LinearLayout>
 </RelativeLayout>
