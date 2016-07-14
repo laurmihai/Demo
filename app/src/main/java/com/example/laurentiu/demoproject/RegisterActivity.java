@@ -65,6 +65,7 @@ public class RegisterActivity extends AppCompatActivity {
                         first_name.getText().toString(),
                         last_name.getText().toString(),
                         email.getText().toString());
+                startActivity(new Intent(getApplicationContext(), HomescreenActivity.class));
             }
         });
     }

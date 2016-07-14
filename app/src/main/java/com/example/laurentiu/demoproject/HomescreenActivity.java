@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
@@ -41,6 +42,8 @@ public class HomescreenActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     myAdapter m;
     GridLayoutManager manager;
+
+    int scrollIndex=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,6 +83,15 @@ public class HomescreenActivity extends AppCompatActivity {
         m = new myAdapter();
         recyclerView.setHasFixedSize(true);
         manager = new GridLayoutManager(this, 2);
+        final SwipeDetector sw = new SwipeDetector();
+        recyclerView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(sw.mSwipeDetected.equals("LEFT")){
+                    Toast.makeText(getApplicationContext(), "adadsf", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
 
         manager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
             @Override
@@ -91,6 +103,14 @@ public class HomescreenActivity extends AppCompatActivity {
         });
         recyclerView.setLayoutManager(manager);
         recyclerView.setAdapter(m);
+
+        recyclerView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+
+                return false;
+            }
+        });
     }
 
     public class OfferViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -184,6 +204,75 @@ public class HomescreenActivity extends AppCompatActivity {
             holder.link = off.link;
             holder.lat = off.lat;
             holder.lon = off.lon;
+        }
+    }
+
+    public class SwipeDetector implements View.OnTouchListener {
+
+        private static final int MIN_DISTANCE = 100;
+        private float downX, downY, upX, upY;
+        String mSwipeDetected;
+
+        public boolean swipeDetected() {
+            return mSwipeDetected.equals("NO");
+        }
+
+        public String getAction() {
+            return mSwipeDetected;
+        }
+
+        public boolean onTouch(View v, MotionEvent event) {
+            switch (event.getAction()) {
+                case MotionEvent.ACTION_DOWN: {
+                    downX = event.getX();
+                    downY = event.getY();
+                    mSwipeDetected = "NO";
+                    return false; // allow other events like Click to be processed
+                }
+                case MotionEvent.ACTION_MOVE: {
+                    upX = event.getX();
+                    upY = event.getY();
+
+                    float deltaX = downX - upX;
+                    float deltaY = downY - upY;
+
+                    // horizontal swipe detection
+                    if (Math.abs(deltaX) > MIN_DISTANCE) {
+                        // left or right
+                        if (deltaX < 0) {
+                            mSwipeDetected = "RIGHT";
+                            if(scrollIndex<scrollViewItems-1){
+                                scrollIndex++;
+                                Toast.makeText(getApplicationContext(), scrollIndex, Toast.LENGTH_SHORT).show();
+                            }
+                            return true;
+                        }
+                        if (deltaX > 0) {
+                            if(scrollIndex>0){
+                                scrollIndex--;
+                                Toast.makeText(getApplicationContext(), scrollIndex, Toast.LENGTH_SHORT).show();
+                            }
+                            mSwipeDetected = "LEFT";
+                            return true;
+                        }
+                    } else
+
+                        // vertical swipe detection
+                        if (Math.abs(deltaY) > MIN_DISTANCE) {
+                            // top or down
+                            if (deltaY < 0) {
+                                mSwipeDetected = "DOWN";
+                                return false;
+                            }
+                            if (deltaY > 0) {
+                                mSwipeDetected = "TOP";
+                                return false;
+                            }
+                        }
+                    return true;
+                }
+            }
+            return false;
         }
     }
 
