@@ -1,45 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/small_offer_item"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:background="@color/white"
-    android:layout_marginLeft="10dp">
+    android:background="@drawable/layout_edit_text"
+    android:layout_margin="@dimen/com_facebook_likeboxcountview_text_padding">
 
     <ImageView
-        android:id="@+id/small"
+        android:id="@+id/smallImage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@color/transparent"
         android:src="@drawable/small_offer"
-        android:padding="@dimen/margins_sides"/>
+        android:padding="@dimen/margins_sides"
+        android:adjustViewBounds="true"
+        android:scaleType="fitXY"/>
 
     <ImageButton
-        android:id="@+id/detail_button"
-        android:layout_width="wrap_content"
+        android:id="@id/detail_button"
+        android:layout_width="@dimen/com_facebook_profilepictureview_preset_size_large"
         android:layout_height="35dp"
         android:background="@color/transparent"
-        android:layout_alignTop="@+id/small"/>
+        android:layout_alignTop="@+id/smallImage"/>
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="@dimen/com_facebook_profilepictureview_preset_size_large"
         android:layout_height="35dp"
         android:weightSum="3"
-        android:layout_alignBottom="@+id/small">
+        android:layout_alignBottom="@+id/smallImage">
         <ImageView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"/>
         <ImageButton
-            android:id="@+id/video_button"
+            android:id="@id/link_button"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="35dp"
             android:layout_weight="1"
-            android:visibility="invisible"/>
+            android:background="@color/transparent"/>
         <ImageButton
-            android:id="@+id/gps_button"
+            android:id="@id/gps_button"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="35dp"
             android:layout_weight="1"
-            android:visibility="invisible"/>
+            android:background="@color/transparent"/>
 
 
     </LinearLayout>

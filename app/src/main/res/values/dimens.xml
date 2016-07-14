@@ -8,5 +8,6 @@
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="hor_scrollview">100dp</dimen>
     <dimen name="hor_scrollview_text">16sp</dimen>
+    <dimen name="homeScreenDimens">60dp</dimen>
 
 </resources>

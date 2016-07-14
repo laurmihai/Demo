@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/offer_iem"
+    android:id="@+id/offer_item"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/layout_edit_text"
@@ -32,16 +32,14 @@
                 android:textColor="@color/lightBlack"
                 android:layout_centerVertical="true"
                 android:layout_margin="@dimen/fab_margin" />
-            <Button
-                android:id="@+id/button_offer"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/main_offer_button"
+            <ImageButton
+                android:id="@+id/detail_button"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/enter_box"
                 android:paddingLeft="@dimen/fab_margin"
                 android:paddingRight="@dimen/fab_margin"
-                android:visibility="gone"
-                android:scaleType="fitXY"
-                android:adjustViewBounds="true"/>
+                android:background="@color/transparent"
+                />
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -92,7 +90,7 @@
                 <ImageButton
                     android:id="@+id/link_button"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_gravity="center"
                     android:layout_weight="1"
                     android:background="@color/transparent"
@@ -101,7 +99,7 @@
                 <ImageButton
                     android:id="@+id/gps_button"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_gravity="center"
                     android:layout_weight="1"
                     android:background="@color/transparent"

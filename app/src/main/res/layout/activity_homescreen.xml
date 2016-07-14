@@ -12,12 +12,12 @@
     <RelativeLayout
         android:id="@+id/top_bar"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/enter_box">
+        android:layout_height="@dimen/homeScreenDimens">
 
         <ImageView
             android:id="@+id/appbar"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/enter_box"
+            android:layout_height="@dimen/homeScreenDimens"
             android:background="@color/redColor" />
 
         <Button
@@ -54,7 +54,7 @@
     <HorizontalScrollView
         android:id="@+id/scrollHomescreen"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/enter_box"
+        android:layout_height="@dimen/homeScreenDimens"
         android:layout_below="@id/top_bar"
         android:layout_weight="0"
         android:background="@color/white"
@@ -67,17 +67,20 @@
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
-            <TextView
+            <Button
+                android:id="@+id/scrollHomescreen1"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:padding="@dimen/input_fields_margins"
                 android:text="ALL"
-                android:textColor="@color/greyColor"
-                android:textSize="@dimen/hor_scrollview_text" />
+                android:textColor="@color/redColor"
+                android:textSize="@dimen/hor_scrollview_text"
+                android:background="@color/transparent"/>
 
-            <TextView
+            <Button
+                android:id="@+id/scrollHomescreen2"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -85,9 +88,11 @@
                 android:padding="@dimen/input_fields_margins"
                 android:text="COUPONS"
                 android:textColor="@color/greyColor"
-                android:textSize="@dimen/hor_scrollview_text" />
+                android:textSize="@dimen/hor_scrollview_text"
+                android:background="@color/transparent"/>
 
-            <TextView
+            <Button
+                android:id="@+id/scrollHomescreen3"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -95,9 +100,11 @@
                 android:padding="@dimen/input_fields_margins"
                 android:text="LAST MINUTE"
                 android:textColor="@color/greyColor"
-                android:textSize="@dimen/hor_scrollview_text" />
+                android:textSize="@dimen/hor_scrollview_text"
+                android:background="@color/transparent"/>
 
-            <TextView
+            <Button
+                android:id="@+id/scrollHomescreen4"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -105,9 +112,11 @@
                 android:padding="@dimen/input_fields_margins"
                 android:text="NEW"
                 android:textColor="@color/greyColor"
-                android:textSize="@dimen/hor_scrollview_text" />
+                android:textSize="@dimen/hor_scrollview_text"
+                android:background="@color/transparent"/>
 
-            <TextView
+            <Button
+                android:id="@+id/scrollHomescreen5"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -115,7 +124,8 @@
                 android:padding="@dimen/input_fields_margins"
                 android:text="SALES"
                 android:textColor="@color/greyColor"
-                android:textSize="@dimen/hor_scrollview_text" />
+                android:textSize="@dimen/hor_scrollview_text"
+                android:background="@color/transparent"/>
 
         </LinearLayout>
     </HorizontalScrollView>
@@ -135,7 +145,7 @@
     <LinearLayout
         android:id="@+id/bottomBar"
         android:layout_width="match_parent"
-        android:layout_height="94dp"
+        android:layout_height="@dimen/homeScreenDimens"
         android:layout_alignParentBottom="true"
         android:background="@color/lightBlack"
         android:orientation="horizontal"

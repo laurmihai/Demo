@@ -29,6 +29,7 @@
     <string name="fill_text">Fill it by yourself</string>
     <string name="register_text">Register</string>
     <string name="facebook_app_id">1148277408577788</string>
+    <string name="YOUR_API_KEY">AIzaSyBJAhPC_A5tZjzWuHWkb1LjGdSHGFAjJak</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="title_activity_homescreen">OFFERS</string>

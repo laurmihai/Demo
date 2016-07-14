@@ -1,5 +1,6 @@
 package com.example.laurentiu.demoproject.data;
 
+import android.widget.Button;
 import android.widget.ImageButton;
 
 /**
@@ -8,13 +9,13 @@ import android.widget.ImageButton;
 public class Offer {
 
     public String link;
-    public float lon;
-    public float lat;
+    public double lon;
+    public double lat;
     public ImageButton bLink;
     public ImageButton bGps;
-    public ImageButton bDetail;
+    public Button bDetail;
 
-    public Offer(float lat, String link, float lon) {
+    public Offer(double lat, String link, double lon) {
         this.lat = lat;
         this.link = link;
         this.lon = lon;
