@@ -18,17 +18,18 @@ import com.facebook.FacebookSdk;
 import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
 import com.facebook.appevents.AppEventsLogger;
+import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
-import com.facebook.login.widget.LoginButton;
 
 import org.json.JSONObject;
+
+import java.util.Arrays;
 
 public class RegisterActivity extends AppCompatActivity {
 
     EditText last_name, first_name, email, password1, password2;
     Button importF, importVK, register;
     String phone_number;
-    LoginButton loginButton;
     CallbackManager mCallbackManager;
 
     @Override
@@ -70,12 +71,17 @@ public class RegisterActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        mCallbackManager.onActivityResult(requestCode, resultCode, data);
+    }
+
     private void facebookLogin(){
-        loginButton.setReadPermissions("email", "public_profile");
         // Other app specific specialization
 
         // Callback registration
-        loginButton.registerCallback(mCallbackManager, new FacebookCallback<LoginResult>() {
+        LoginManager.getInstance().registerCallback(mCallbackManager, new FacebookCallback<LoginResult>()  {
             @Override
             public void onSuccess(LoginResult loginResult) {
                 Log.d("Register", "FB: login success");
@@ -107,11 +113,11 @@ public class RegisterActivity extends AppCompatActivity {
                                     else
                                     {
                                         String mail = me.optString("email");
-                                        //String lastName= me.optString("last_name");
-                                        //String firstName= me.optString("first_name");
+                                        String lastName= me.optString("last_name");
+                                        String firstName= me.optString("first_name");
 
-                                        //last_name.setText(lastName);
-                                        //first_name.setText(firstName);
+                                        last_name.setText(lastName);
+                                        first_name.setText(firstName);
                                         email.setText(mail);
                                     }
                                 }
@@ -137,7 +143,8 @@ public class RegisterActivity extends AppCompatActivity {
                 //showDialog(getString(R.string.dialog_message_unknown_error));
             }
         });
-        loginButton.callOnClick();
+
+        LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("email", "public_profile"));
     }
 
     private boolean validateFields() {
@@ -185,7 +192,6 @@ public class RegisterActivity extends AppCompatActivity {
         importF = (Button)findViewById(R.id.import_F);
         importVK = (Button)findViewById(R.id.import_VK);
         register = (Button)findViewById(R.id.register_button);
-        loginButton = (LoginButton) findViewById(R.id.fbLogin);
 
     }
 }

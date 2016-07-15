@@ -27,4 +27,5 @@ dependencies {
     compile 'com.facebook.android:facebook-android-sdk:4.+'
     compile 'com.android.support:support-v4:24.0.0'
     compile 'junit:junit:4.12'
+    compile 'com.google.android.gms:play-services:9.2.0'
 }

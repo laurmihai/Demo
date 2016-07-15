@@ -1,0 +1,149 @@
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.laurentiu.demoproject.data.FragmentDiscover">
+
+    <RelativeLayout
+        android:id="@+id/discoverFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/background_login"
+        android:clickable="false"
+        android:fitsSystemWindows="true">
+
+        <RelativeLayout
+            android:id="@+id/top_bar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/homeScreenDimens">
+
+            <ImageView
+                android:id="@+id/appbar"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/homeScreenDimens"
+                android:background="@color/redColor" />
+
+            <Button
+                android:id="@+id/searchImage"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_alignEnd="@+id/appbar"
+                android:layout_centerVertical="true"
+                android:background="@color/transparent"
+                android:drawableStart="@drawable/search_icon"
+                android:paddingRight="@dimen/margins_sides" />
+
+            <TextView
+                android:id="@+id/offer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="@string/title_activity_homescreen"
+                android:textColor="@color/white"
+                android:textSize="22sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/searchText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/searchImage"
+                android:background="@color/transparent"
+                android:paddingLeft="@dimen/enter_box"
+                android:visibility="gone" />
+        </RelativeLayout>
+
+        <HorizontalScrollView
+            android:id="@+id/scrollHomescreen"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/homeScreenDimens"
+            android:layout_below="@id/top_bar"
+            android:layout_weight="0"
+            android:background="@color/white"
+            android:measureAllChildren="false"
+            android:scrollbars="horizontal">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/scrollHomescreen1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:padding="@dimen/input_fields_margins"
+                    android:text="ALL"
+                    android:textColor="@color/redColor"
+                    android:textSize="@dimen/hor_scrollview_text"
+                    android:background="@color/transparent"/>
+
+                <Button
+                    android:id="@+id/scrollHomescreen2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:padding="@dimen/input_fields_margins"
+                    android:text="COUPONS"
+                    android:textColor="@color/greyColor"
+                    android:textSize="@dimen/hor_scrollview_text"
+                    android:background="@color/transparent"/>
+
+                <Button
+                    android:id="@+id/scrollHomescreen3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:padding="@dimen/input_fields_margins"
+                    android:text="LAST MINUTE"
+                    android:textColor="@color/greyColor"
+                    android:textSize="@dimen/hor_scrollview_text"
+                    android:background="@color/transparent"/>
+
+                <Button
+                    android:id="@+id/scrollHomescreen4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:padding="@dimen/input_fields_margins"
+                    android:text="NEW"
+                    android:textColor="@color/greyColor"
+                    android:textSize="@dimen/hor_scrollview_text"
+                    android:background="@color/transparent"/>
+
+                <Button
+                    android:id="@+id/scrollHomescreen5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:padding="@dimen/input_fields_margins"
+                    android:text="SALES"
+                    android:textColor="@color/greyColor"
+                    android:textSize="@dimen/hor_scrollview_text"
+                    android:background="@color/transparent"/>
+
+            </LinearLayout>
+        </HorizontalScrollView>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/scrollHomescreen"
+            android:layout_above="@+id/bottomBar"
+            android:stretchMode="columnWidth"
+            >
+
+        </android.support.v7.widget.RecyclerView>
+
+    </RelativeLayout>
+</FrameLayout>
