@@ -1,0 +1,89 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_login"
+    tools:context="com.example.laurentiu.demoproject.fragments.ProfileFragment">
+
+    <LinearLayout
+        android:id="@+id/settings_top_bar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/enter_box"
+        android:background="@color/redColor"
+        android:weightSum="3">
+
+        <Button
+            android:id="@+id/profile_back_button"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/transparent"
+            android:drawableLeft="@drawable/right_arrow2"
+            android:paddingLeft="@dimen/fab_margin"
+            android:text="BACK" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="MY PROFILE"
+            android:textColor="@color/white"
+            android:textStyle="bold" />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/transparent"
+            android:drawableRight="@drawable/settings_iamge"
+            android:paddingRight="@dimen/fab_margin" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/profile_linear2"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/cast_mini_controller_icon_width"
+        android:layout_below="@+id/settings_top_bar"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:weightSum="3">
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:src="@drawable/points_image" />
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/margins_sides"
+            android:layout_marginRight="@dimen/margins_sides"
+            android:layout_weight="1"
+            android:background="@drawable/shoe_background"
+            android:paddingLeft="@dimen/com_facebook_share_button_padding_left"
+            android:paddingRight="@dimen/com_facebook_share_button_padding_right"
+            android:paddingTop="@dimen/margins_sides"
+            android:paddingBottom="@dimen/margins_sides"
+            android:src="@drawable/shoe_image" />
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/profile_linear2"
+        android:layout_margin="@dimen/com_facebook_tooltip_horizontal_padding"
+        android:src="@drawable/more_points_button"
+        android:id="@+id/imageView" />
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/enter_box"
+        android:src="@drawable/profile_bubbles"
+        android:layout_below="@+id/imageView"
+        android:layout_alignParentEnd="true" />
+</RelativeLayout>

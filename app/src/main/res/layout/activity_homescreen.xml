@@ -31,7 +31,6 @@
             android:layout_gravity="center"
             android:layout_weight="1"
             android:background="@color/lightBlack"
-            android:focusable="true"
             android:src="@drawable/selector_bottom1">
 
         </ImageButton>
@@ -43,7 +42,6 @@
             android:layout_gravity="center"
             android:layout_weight="1"
             android:background="@color/lightBlack"
-            android:focusable="true"
             android:src="@drawable/selector_bottom2">
 
         </ImageButton>
@@ -55,7 +53,6 @@
             android:layout_gravity="center"
             android:layout_weight="1"
             android:background="@color/lightBlack"
-            android:focusable="true"
             android:src="@drawable/selector_bottom3">
 
         </ImageButton>
@@ -66,8 +63,6 @@
             android:layout_height="match_parent"
             android:layout_gravity="center"
             android:layout_weight="1"
-            android:background="@color/lightBlack"
-            android:focusable="true"
-            android:src="@drawable/bottom_button4" />
+            android:background="@color/lightBlack" />
     </LinearLayout>
 </RelativeLayout>

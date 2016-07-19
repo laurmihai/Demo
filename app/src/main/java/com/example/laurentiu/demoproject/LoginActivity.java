@@ -35,7 +35,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 if(validateFields(phone_number)) {
-                    //TODO:Go to screen 4
+                    startActivity(new Intent(getApplicationContext(),HomescreenActivity.class));
                 }
             }
         });
@@ -59,26 +59,13 @@ public class LoginActivity extends AppCompatActivity {
         cursorNumber.moveToFirst();
         String password = cursorNumber.getString( cursorNumber.getColumnIndex(DatabaseContract.PhoneEntry.COLUMN_PASSWORD));
 
-        if(!password.equals(password1.getText().toString())){
-            Toast.makeText(getApplicationContext(), "Wrong password", Toast.LENGTH_LONG).show();
-            return false;
-        }
-
-        if (password1.getText().toString().length() < 8)
-        {
-            Toast.makeText(getApplicationContext(), getResources()
-                    .getString(R.string.error_invalid_password), Toast.LENGTH_LONG).show();
-            return false;
-        }
-
-        if (!(String.valueOf(password1.getText())).equals(String.valueOf(password2.getText())))
-        {
+        if (!(String.valueOf(password1.getText())).equals(String.valueOf(password2.getText()))) {
             Toast.makeText(getApplicationContext(), "Passwords does not match", Toast.LENGTH_SHORT).show();
             return false;
         }
-        if (!password.equals(String.valueOf(password2.getText())))
-        {
-            Toast.makeText(getApplicationContext(), "Wrong password", Toast.LENGTH_LONG).show();
+
+        if(!password.equals(password1.getText().toString())){
+            Toast.makeText(getApplicationContext(), getResources().getString(R.string.error_incorrect_password), Toast.LENGTH_LONG).show();
             return false;
         }
         return true;

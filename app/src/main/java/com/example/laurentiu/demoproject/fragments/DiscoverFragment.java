@@ -1,6 +1,7 @@
 package com.example.laurentiu.demoproject.fragments;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
@@ -34,17 +35,24 @@ public class DiscoverFragment extends Fragment {
     EditText searchText;
     TextView offer;
     Boolean isSearchOn = false;
-    HorizontalScrollView scrollView;
     List<List<Offer>> offersListApplication;
     RecyclerView recyclerView;
     myAdapter m;
     GridLayoutManager manager;
     int scrollIndex=0;
     int scrollViewItems = 5;
+    Fragment fr;
 
 
     public DiscoverFragment() {
         // Required empty public constructor
+    }
+
+    OnHeadlineSelectedListener mCallback;
+
+    // Container Activity must implement this interface
+    public interface OnHeadlineSelectedListener {
+        public void onArticleSelected(String video, String lat, String lon);
     }
 
 
@@ -53,6 +61,8 @@ public class DiscoverFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_discover, container, false);
+
+        fr=this;
 
         getReferences(rootView);
 
@@ -66,6 +76,20 @@ public class DiscoverFragment extends Fragment {
 
     }
 
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+
+        // This makes sure that the container activity has implemented
+        // the callback interface. If not, it throws an exception
+        try {
+            mCallback = (OnHeadlineSelectedListener) context;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(context.toString() + " must implement OnHeadlineSelectedListener");
+        }
+
+
+    }
 
     private void editDataSet() {
 
@@ -129,14 +153,14 @@ public class DiscoverFragment extends Fragment {
                 @Override
                 public void onClick(View view) {
                     Uri ggp = Uri.parse("geo:+"+lat+","+lon);
-                    Toast.makeText(getActivity().getApplicationContext(), lat + ","+lon, Toast.LENGTH_LONG).show();
                     startActivity(new Intent(Intent.ACTION_VIEW, ggp));
                 }
             });
             bDetail.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Toast.makeText(view.getContext(), "Detail", Toast.LENGTH_SHORT).show();
+                    mCallback.onArticleSelected(link, String.valueOf(lat), String.valueOf(lon));
+
                 }
             });
         }

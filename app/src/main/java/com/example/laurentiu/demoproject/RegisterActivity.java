@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.example.laurentiu.demoproject.data.PhoneDatabase;
@@ -31,6 +32,7 @@ public class RegisterActivity extends AppCompatActivity {
     Button importF, importVK, register;
     String phone_number;
     CallbackManager mCallbackManager;
+    ImageButton button4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,15 +60,15 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                validateFields();
-                Log.i("Phone number", phone_number);
-                PhoneDatabase.getInstance(getApplicationContext()).addEntry(getApplicationContext(),
-                        phone_number,
-                        password1.getText().toString(),
-                        first_name.getText().toString(),
-                        last_name.getText().toString(),
-                        email.getText().toString());
-                startActivity(new Intent(getApplicationContext(), HomescreenActivity.class));
+                if(validateFields()){
+                    PhoneDatabase.getInstance(getApplicationContext()).addEntry(getApplicationContext(),
+                            phone_number,
+                            password1.getText().toString(),
+                            first_name.getText().toString(),
+                            last_name.getText().toString(),
+                            email.getText().toString());
+                    startActivity(new Intent(getApplicationContext(), HomescreenActivity.class));
+                }
             }
         });
     }
@@ -83,7 +85,7 @@ public class RegisterActivity extends AppCompatActivity {
         // Callback registration
         LoginManager.getInstance().registerCallback(mCallbackManager, new FacebookCallback<LoginResult>()  {
             @Override
-            public void onSuccess(LoginResult loginResult) {
+            public void onSuccess(final LoginResult loginResult) {
                 Log.d("Register", "FB: login success");
 
                 final String token = loginResult.getAccessToken().getToken();
@@ -93,7 +95,7 @@ public class RegisterActivity extends AppCompatActivity {
                 Bundle parameters = new Bundle();
                 parameters.putString("fields", TextUtils.join(",", requiredFields));
 
-                GraphRequest requestEmail = new GraphRequest(loginResult.getAccessToken(), "me", parameters, null, new GraphRequest.Callback()
+                GraphRequest requestGraph = new GraphRequest(loginResult.getAccessToken(), "me", parameters, null, new GraphRequest.Callback()
                 {
                     @Override
                     public void onCompleted (GraphResponse response)
@@ -108,13 +110,26 @@ public class RegisterActivity extends AppCompatActivity {
                                     if (response.getError() != null)
                                     {
                                         Log.d("Register", "FB: cannot parse email");
-                                        //showDialog(getString(R.string.dialog_message_unknown_error));
                                     }
                                     else
                                     {
                                         String mail = me.optString("email");
                                         String lastName= me.optString("last_name");
                                         String firstName= me.optString("first_name");
+
+                                        /*try {
+                                            URL image_value = new URL("http://graph.facebook.com/"+ loginResult.getAccessToken().getUserId()+ "/picture?type=small");
+                                            Bitmap bmp = null;
+                                            try {
+                                                bmp = BitmapFactory.decodeStream(image_value.openConnection().getInputStream());
+                                                button4.setImageBitmap(bmp);
+                                            } catch (IOException e) {
+                                                e.printStackTrace();
+                                            }
+                                        } catch (MalformedURLException e) {
+                                            e.printStackTrace();
+                                        }*/
+
 
                                         last_name.setText(lastName);
                                         first_name.setText(firstName);
@@ -128,7 +143,7 @@ public class RegisterActivity extends AppCompatActivity {
                     }
                 });
 
-                requestEmail.executeAsync();
+                requestGraph.executeAsync();
             }
 
             @Override
@@ -174,6 +189,10 @@ public class RegisterActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "Passwords does not match", Toast.LENGTH_LONG).show();
             return false;
         }
+        if(String.valueOf(password1.getText()).length()<8){
+            Toast.makeText(getApplicationContext(), "Passwords must have minimum 8 characters", Toast.LENGTH_LONG).show();
+            return false;
+        }
         return true;
     }
 
@@ -192,6 +211,8 @@ public class RegisterActivity extends AppCompatActivity {
         importF = (Button)findViewById(R.id.import_F);
         importVK = (Button)findViewById(R.id.import_VK);
         register = (Button)findViewById(R.id.register_button);
+
+        button4 = (ImageButton)findViewById(R.id.bottom4);
 
     }
 }
